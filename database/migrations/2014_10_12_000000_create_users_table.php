@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('nick_name');
+            $table->string('bio')->nullable();
+            $table->string('avatar_url')->nullable();
+            $table->foreignId('country_id')->constrained();
+            $table->unsignedTinyInteger('addiction_type');
+            $table->boolean('is_recovered')->default(false);
+            $table->unsignedInteger('score')->default(0);
+            $table->date('birth_date')->nullable();
             $table->timestamps();
         });
     }
