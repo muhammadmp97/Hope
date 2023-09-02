@@ -5,6 +5,7 @@ namespace Tests\Feature\User;
 use App\Models\Country;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class AuthControllerTest extends TestCase
@@ -53,5 +54,27 @@ class AuthControllerTest extends TestCase
             'email' => $user->email,
             'password' => 'password'
         ])->assertStatus(401);
+    }
+
+    public function test_user_changes_password_using_old_password()
+    {
+        $user = $this->signIn();
+
+        $this->postJson('api/auth/change-password', [
+            'old_password' => '12345678',
+            'password' => 'password',
+        ])->assertOk();
+
+        $this->assertTrue(Hash::check('password', $user->password));
+    }
+
+    public function test_user_needs_old_password_for_changing_password()
+    {
+        $this->signIn();
+
+        $this->postJson('api/auth/change-password', [
+            'old_password' => '1234',
+            'password' => 'password',
+        ])->assertJsonValidationErrorFor('old_password');
     }
 }
