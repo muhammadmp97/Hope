@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers;
 
 use App\Actions\User\ChangePasswordAction;
 use App\Actions\User\CreateUserAction;
 use App\Actions\User\LoginUserAction;
 use App\Actions\User\LogoutUserAction;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegistrationRequest;

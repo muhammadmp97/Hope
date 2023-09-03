@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\CountriesController;
-use App\Http\Controllers\User\AuthController;
-use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +26,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::get('countries', [CountriesController::class, 'index']);
 
-// Route::apiResource('profile', [ProfileController::class])->only(['index', 'update']);
+Route::patch('profile', [ProfileController::class, 'update']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
