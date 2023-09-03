@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\ProfileController;
 use Illuminate\Http\Request;
@@ -23,7 +24,9 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('change-password', [AuthController::class, 'changePassword']);
 });
 
-Route::patch('profile', [ProfileController::class, 'update']);
+Route::get('countries', [CountriesController::class, 'index']);
+
+// Route::apiResource('profile', [ProfileController::class])->only(['index', 'update']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
