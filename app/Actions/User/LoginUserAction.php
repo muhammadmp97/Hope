@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginUserAction
 {
-    public function execute($request): string
+    public function execute(array $data): string
     {
-        $user = User::firstWhere('email', $request->email);
+        $user = User::firstWhere('email', $data['email']);
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($data['password'], $user->password)) {
             abort(401, 'User not found!');
         }
 
         return $user
-            ->createToken($request->header('User-Agent'))
+            ->createToken(request()->header('User-Agent', 'Unkown User Agent'))
             ->plainTextToken;
     }
 }

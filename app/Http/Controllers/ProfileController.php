@@ -23,7 +23,7 @@ class ProfileController extends Controller
 
     public function update(UpdateProfileRequest $request, EditProfileAction $editProfileAction)
     {
-        $user = $editProfileAction->execute($request->user(), $request);
+        $user = $editProfileAction->execute($request->user(), $request->validated());
 
         return $this->ok(
             UserResource::make($user)

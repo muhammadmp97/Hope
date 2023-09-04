@@ -21,14 +21,14 @@ class AuthController extends Controller
 
     public function register(UserRegistrationRequest $request, CreateUserAction $createUserAction)
     {
-        $createUserAction->execute($request);
+        $createUserAction->execute($request->validated());
 
         return $this->created();
     }
 
     public function login(UserLoginRequest $request, LoginUserAction $loginUserAction)
     {
-        $token = $loginUserAction->execute($request);
+        $token = $loginUserAction->execute($request->validated());
 
         return $this->ok(
             UserTokenResource::make($token)
@@ -37,14 +37,14 @@ class AuthController extends Controller
 
     public function logout(Request $request, LogoutUserAction $logoutUserAction)
     {
-        $logoutUserAction->execute($request);
+        $logoutUserAction->execute($request->user());
 
         return $this->ok();
     }
 
     public function changePassword(ChangePasswordRequest $request, ChangePasswordAction $changePasswordAction)
     {
-        $changePasswordAction->execute($request);
+        $changePasswordAction->execute($request->user(), $request->validated());
 
         return $this->ok();
     }

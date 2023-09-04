@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Hash;
 
 class CreateUserAction
 {
-    public function execute($user)
+    public function execute(array $data): User
     {
-        User::create([
-            'email' => $user->email,
-            'password' => Hash::make($user->password),
-            'nick_name' => $user->nick_name,
-            'country_id' => $user->country_id,
+        return User::create([
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'nick_name' => $data['nick_name'],
+            'country_id' => $data['country_id'],
             'addiction_type' => AddictionType::Unknown,
         ]);
     }
