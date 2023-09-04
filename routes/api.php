@@ -26,6 +26,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::get('countries', [CountriesController::class, 'index']);
 
+Route::get('profile', [ProfileController::class, 'index']);
 Route::patch('profile', [ProfileController::class, 'update']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
