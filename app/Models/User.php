@@ -40,6 +40,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected $with = ['country'];
+
     public function country()
     {
         return $this->belongsTo(Country::class);

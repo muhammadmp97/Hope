@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChallengesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,8 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::get('profile', [ProfileController::class, 'index']);
 Route::patch('profile', [ProfileController::class, 'update']);
+
+Route::post('challenges', [ChallengesController::class, 'store']);
 
 Route::apiResource('users', UsersController::class)->only('index', 'show');
 
