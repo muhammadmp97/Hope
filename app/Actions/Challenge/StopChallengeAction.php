@@ -15,7 +15,7 @@ class StopChallengeAction
         }
 
         $challenge->update([
-            'status' => ChallengeStatus::STOPPED,
+            'status' => ChallengeStatus::STOPPED->value,
         ]);
     }
 }

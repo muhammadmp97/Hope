@@ -12,7 +12,7 @@ class CreateChallengeAction
     {
         $ongoingChallenge = Challenge::query()
             ->where('user_id', $user->id)
-            ->where('status', ChallengeStatus::ONGOING);
+            ->where('status', ChallengeStatus::ONGOING->value);
 
         if ($ongoingChallenge->exists()) {
             abort(400, 'You have an uncompleted challenge!');
@@ -20,7 +20,7 @@ class CreateChallengeAction
 
         $data = array_merge($data, [
             'user_id' => $user->id,
-            'status' => ChallengeStatus::ONGOING,
+            'status' => ChallengeStatus::ONGOING->value,
             'continued_at' => now(),
         ]);
 
