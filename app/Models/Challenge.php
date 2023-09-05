@@ -13,6 +13,13 @@ class Challenge extends Model
 
     protected $with = ['user'];
 
+    public function scopeByUserId($query, $userId = null): void
+    {
+        if ($userId !== null) {
+            $query->where('user_id', $userId);
+        }
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

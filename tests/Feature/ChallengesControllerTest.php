@@ -25,6 +25,16 @@ class ChallengesControllerTest extends TestCase
         $this->signIn();
     }
 
+    public function test_user_gets_his_challenges()
+    {
+        Challenge::factory()->count(3)->create();
+
+        $this
+            ->getJson('api/challenges?user_id=1')
+            ->assertOk()
+            ->assertJsonCount(3, 'data');
+    }
+
     public function test_user_creates_a_challenge()
     {
         $this

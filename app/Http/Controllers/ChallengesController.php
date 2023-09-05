@@ -16,6 +16,18 @@ class ChallengesController extends Controller
         $this->middleware('auth:sanctum');
     }
 
+    public function index()
+    {
+        $challenges = Challenge::query()
+            ->latest('continued_at')
+            ->byUserId(request()->user_id)
+            ->paginate();
+
+        return $this->ok(
+            ChallengeResource::collection($challenges)
+        );
+    }
+
     public function store(CreateChallengeRequest $request, CreateChallengeAction $createChallengeAction)
     {
         $challenge = $createChallengeAction->execute($request->user(), $request->validated());
