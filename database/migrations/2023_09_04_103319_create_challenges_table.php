@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('challenges', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->enum('status', ['ongoing', 'surrendered', 'abandoned', 'completed'])->default('ongoing');
+            $table->enum('status', ['ongoing', 'stopped', 'abandoned', 'completed'])->default('ongoing');
             $table->string('text')->nullable();
             $table->timestamp('continued_at')->nullable();
             $table->timestamps();

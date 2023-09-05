@@ -5,7 +5,7 @@ namespace App\Enums;
 enum ChallengeStatus: string
 {
     case ONGOING = 'ongoing';
-    case SURRENDERED = 'surrendered';
+    case STOPPED = 'stopped';
     case ABANDONED = 'abandoned';
     case COMPLETED = 'completed';
 }

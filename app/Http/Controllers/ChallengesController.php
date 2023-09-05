@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Challenge\CreateChallengeAction;
+use App\Actions\Challenge\StopChallengeAction;
 use App\Http\Requests\CreateChallengeRequest;
 use App\Http\Resources\ChallengeResource;
+use App\Models\Challenge;
+use Illuminate\Validation\UnauthorizedException;
 
 class ChallengesController extends Controller
 {
@@ -20,5 +23,16 @@ class ChallengesController extends Controller
         return $this->created(
             ChallengeResource::make($challenge)
         );
+    }
+
+    public function destroy(Challenge $challenge, StopChallengeAction $stopChallengeAction)
+    {
+        if ($challenge->user_id !== request()->user()->id) {
+            throw new UnauthorizedException();
+        }
+
+        $stopChallengeAction->execute($challenge);
+
+        return $this->ok();
     }
 }

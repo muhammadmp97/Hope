@@ -18,7 +18,7 @@ Route::group(['prefix' => 'auth'], function () {
 Route::get('profile', [ProfileController::class, 'index']);
 Route::patch('profile', [ProfileController::class, 'update']);
 
-Route::post('challenges', [ChallengesController::class, 'store']);
+Route::apiResource('challenges', ChallengesController::class)->only(['store', 'destroy']);
 
 Route::apiResource('users', UsersController::class)->only('index', 'show');
 

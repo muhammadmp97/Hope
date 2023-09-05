@@ -4,7 +4,9 @@ namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -42,6 +44,16 @@ class Handler extends ExceptionHandler
                 ])->setStatusCode(401);
         });
 
+        $this->renderable(function (UnauthorizedException $unauthorizedException) {
+            return response()->json([
+                'errors' => null,
+                'meta' => [
+                    'message' => 'Unauthorized action',
+                    'error_id' => null,
+                ],
+            ])->setStatusCode(403);
+        });
+
         $this->renderable(function (NotFoundHttpException $notFoundHttpException) {
             return response()->json([
                 'errors' => [],
@@ -60,6 +72,16 @@ class Handler extends ExceptionHandler
                     'error_id' => null,
                 ],
             ])->setStatusCode(422);
+        });
+
+        $this->renderable(function (HttpException $httpException) {
+            return response()->json([
+                'errors' => null,
+                'meta' => [
+                    'message' => $httpException->getMessage(),
+                    'error_id' => null,
+                ],
+            ])->setStatusCode($httpException->getStatusCode());
         });
     }
 }
