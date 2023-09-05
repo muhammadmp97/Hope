@@ -14,8 +14,8 @@ class StopChallengeAction
             throw new HttpException(400, 'This challenge is not ongoing!');
         }
 
-        $challenge->update([
-            'status' => ChallengeStatus::STOPPED->value,
-        ]);
+        $challenge->timestamps = false;
+        $challenge->status = ChallengeStatus::STOPPED->value;
+        $challenge->save();
     }
 }
