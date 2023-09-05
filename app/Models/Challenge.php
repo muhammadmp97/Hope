@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +14,11 @@ class Challenge extends Model
 
     protected $with = ['user'];
 
-    public function scopeByUserId($query, $userId = null): void
+    protected $casts = [
+        'continued_at' => 'datetime',
+    ];
+
+    public function scopeByUserId(Builder $query, $userId = null): void
     {
         if ($userId !== null) {
             $query->where('user_id', $userId);

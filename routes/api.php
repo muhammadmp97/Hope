@@ -3,6 +3,7 @@
 use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChallengesController;
+use App\Http\Controllers\ContinueChallengeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,7 @@ Route::get('profile', [ProfileController::class, 'index']);
 Route::patch('profile', [ProfileController::class, 'update']);
 
 Route::apiResource('challenges', ChallengesController::class)->only(['index', 'store', 'destroy']);
+Route::post('challenges/{challenge}/continue', ContinueChallengeController::class);
 
 Route::apiResource('users', UsersController::class)->only('index', 'show');
 

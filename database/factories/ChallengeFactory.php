@@ -16,7 +16,7 @@ class ChallengeFactory extends Factory
         $createdAt = now()->subDays(rand(10, 30));
 
         return [
-            'user_id' => User::first(),
+            'user_id' => User::first()->id,
             'status' => Arr::random($challengeStatus),
             'text' => rand(0, 1) == 1 ? $this->faker->text(160) : '',
             'continued_at' => $createdAt->addDays(rand(0, 10)),
