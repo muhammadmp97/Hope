@@ -9,15 +9,13 @@ class ChallengeResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        $isLiked = $this->likes->contains(fn ($like) => $like->user->id === $request->user()->id);
-
         return [
             'id' => $this->id,
             'user' => TinyUserResource::make($this->user),
             'status' => $this->status,
             'text' => $this->text,
             'continued_at' => $this->continued_at,
-            'is_liked' => $isLiked,
+            'is_liked' => $this->isLikedBy($request->user()->id),
             'like_count' => $this->likes_count,
             'comment_count' => $this->comments_count,
             'created_at' => $this->created_at,
