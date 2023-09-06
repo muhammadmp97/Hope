@@ -19,7 +19,7 @@ class ChallengesController extends Controller
     public function index()
     {
         $challenges = Challenge::query()
-            ->with(['likes'])
+            ->with(['likes', 'comments'])
             ->latest('continued_at')
             ->byUserId(request()->user_id)
             ->paginate();

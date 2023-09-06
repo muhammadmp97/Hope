@@ -19,6 +19,7 @@ class ChallengeResource extends JsonResource
             'continued_at' => $this->continued_at,
             'is_liked' => $isLiked,
             'like_count' => $this->likes->count(),
+            'comment_count' => $this->comments->count(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
