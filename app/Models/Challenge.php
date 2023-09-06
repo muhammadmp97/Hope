@@ -34,4 +34,9 @@ class Challenge extends Model
     {
         return $this->morphMany(Like::class, 'likable');
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

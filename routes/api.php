@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChallengeCommentsController;
 use App\Http\Controllers\ChallengeLikesController;
 use App\Http\Controllers\ChallengesController;
 use App\Http\Controllers\ContinueChallengeController;
@@ -26,6 +27,8 @@ Route::post('challenges/{challenge}/continue', ContinueChallengeController::clas
 Route::get('challenges/{challenge}/likes', [ChallengeLikesController::class, 'index']);
 Route::post('challenges/{challenge}/likes', [ChallengeLikesController::class, 'store']);
 Route::delete('challenges/{challenge}/likes', [ChallengeLikesController::class, 'destroy']);
+
+Route::apiResource('challenges/{challenge}/comments', ChallengeCommentsController::class)->except(['show']);
 
 Route::apiResource('users', UsersController::class)->only('index', 'show');
 
