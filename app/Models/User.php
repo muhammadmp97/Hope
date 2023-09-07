@@ -26,8 +26,26 @@ class User extends Authenticatable
 
     protected $with = ['country'];
 
+    public function isFollowedBy($userId): bool
+    {
+        return $this
+            ->followers()
+            ->where('follower_id', $userId)
+            ->exists();
+    }
+
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'following_id', 'follower_id');
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'following_id');
     }
 }

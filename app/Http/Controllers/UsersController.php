@@ -14,7 +14,9 @@ class UsersController extends Controller
 
     public function index()
     {
-        $users = User::paginate();
+        $users = User::query()
+            ->withCount(['followers', 'following'])
+            ->paginate();
 
         return $this->ok(
             PublicProfileResource::collection($users)
@@ -23,6 +25,8 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
+        $user->loadCount(['followers', 'following']);
+
         return $this->ok(
             PublicProfileResource::make($user)
         );

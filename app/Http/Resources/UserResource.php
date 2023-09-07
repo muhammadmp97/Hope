@@ -20,6 +20,9 @@ class UserResource extends JsonResource
             'is_recovered' => $this->is_recovered,
             'score' => $this->score,
             'birth_date' => $this->birth_date,
+            'followers_count' => $this->followers_count,
+            'following_count' => $this->following_count,
+            'is_followed' => $this->isFollowedBy(request()->user()->id),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

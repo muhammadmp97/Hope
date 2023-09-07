@@ -7,6 +7,8 @@ use App\Http\Controllers\ChallengeLikesController;
 use App\Http\Controllers\ChallengesController;
 use App\Http\Controllers\ContinueChallengeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserFollowersController;
+use App\Http\Controllers\UserFollowingController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,5 +33,9 @@ Route::delete('challenges/{challenge}/likes', [ChallengeLikesController::class, 
 Route::apiResource('challenges/{challenge}/comments', ChallengeCommentsController::class)->except(['show']);
 
 Route::apiResource('users', UsersController::class)->only('index', 'show');
+Route::get('users/{user}/following', [UserFollowingController::class, 'index']);
+Route::get('users/{user}/followers', [UserFollowersController::class, 'index']);
+Route::post('users/{user}/followers', [UserFollowersController::class, 'store']);
+Route::delete('users/{user}/followers', [UserFollowersController::class, 'destroy']);
 
 Route::get('countries', [CountriesController::class, 'index']);

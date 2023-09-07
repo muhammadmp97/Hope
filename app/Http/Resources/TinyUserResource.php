@@ -14,6 +14,7 @@ class TinyUserResource extends JsonResource
             'nick_name' => $this->nick_name,
             'bio' => $this->bio,
             'avatar_url' => $this->avatar_url,
+            'is_followed' => $this->isFollowedBy(request()->user()->id),
         ];
     }
 }
