@@ -7,6 +7,7 @@ use App\Http\Controllers\ChallengeLikesController;
 use App\Http\Controllers\ChallengesController;
 use App\Http\Controllers\ContinueChallengeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UserFollowersController;
 use App\Http\Controllers\UserFollowingController;
 use App\Http\Controllers\UsersController;
@@ -37,5 +38,7 @@ Route::get('users/{user}/following', [UserFollowingController::class, 'index']);
 Route::get('users/{user}/followers', [UserFollowersController::class, 'index']);
 Route::post('users/{user}/followers', [UserFollowersController::class, 'store']);
 Route::delete('users/{user}/followers', [UserFollowersController::class, 'destroy']);
+
+Route::post('reports', [ReportsController::class, 'store']);
 
 Route::get('countries', [CountriesController::class, 'index']);
