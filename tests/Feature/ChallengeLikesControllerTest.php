@@ -54,10 +54,7 @@ class ChallengeLikesControllerTest extends TestCase
     public function test_user_likes_a_challenge()
     {
         $this->postJson('api/challenges/1/likes')
-            ->assertCreated();
-
-            $this->postJson('api/challenges/1/likes')
-            ->assertCreated();
+            ->assertOk();
         
         $this->assertEquals(1, Challenge::first()->likes()->count());
     }

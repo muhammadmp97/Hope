@@ -29,7 +29,7 @@ class ChallengeLikesController extends Controller
     {
         $likeChallengeAction->execute(request()->user(), $challenge);
 
-        return $this->created();
+        return $this->ok();
     }
 
     public function destroy(Challenge $challenge, UnlikeChallengeAction $unlikeChallengeAction)
