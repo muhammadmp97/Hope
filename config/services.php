@@ -31,4 +31,7 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'komprehend' => [
+        'token' => 'AW66udGc1Uchr9wfZpZY6ATOoEDdEqnacGsIYqu4Vtk',
+    ],
 ];

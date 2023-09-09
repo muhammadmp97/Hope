@@ -3,9 +3,13 @@
 namespace Tests\Feature;
 
 use App\Models\Challenge;
-use App\Models\Comment;
 use App\Models\Country;
+use App\Models\User;
+use App\Services\AbuseDetection\AbuseDetector;
+use App\Services\AbuseDetection\Komprehend;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Mockery;
+use Mockery\MockInterface;
 use Tests\TestCase;
 
 class ChallengeCommentsControllerTest extends TestCase
@@ -60,17 +64,35 @@ class ChallengeCommentsControllerTest extends TestCase
 
     public function test_user_leaves_a_comment()
     {
+        $this->instance(
+            AbuseDetector::class,
+            Mockery::mock(Komprehend::class, function (MockInterface $mock) {
+                $mock
+                    ->shouldReceive('check')
+                    ->once()
+                    ->andReturn(true);
+            })
+        );
+
+        User::factory()->create([
+            'email' => config('hope.hope_bot_mail'),
+        ]);
+        
         $response = $this->postJson('api/challenges/1/comments', [
-            'text' => 'Keep fighting, dude!',
+            'text' => 'You ****** *****!',
         ]);
 
         $response
             ->assertCreated()
             ->assertJson([
                 'data' => [
-                    'text' => 'Keep fighting, dude!',
+                    'text' => 'You ****** *****!',
                 ],
             ]);
+
+        $this->assertDatabaseHas('reports', [
+            'text' => 'Abusive or hate-speech detected.',
+        ]);
     }
 
     public function test_user_edits_a_comment()
