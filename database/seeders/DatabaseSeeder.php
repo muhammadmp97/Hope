@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Actions\User\CreateUserAction;
-use App\Models\Country;
 use App\Enums\AddictionType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,17 +14,20 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run(CreateUserAction $createUserAction): void
+    public function run(): void
     {
         $this->call([
             CountrySeeder::class,
         ]);
 
-        $createUserAction->execute((object) [
-            'email' => 'johndoe@gmail.com',
-            'password' => '12345678',
-            'nick_name' => 'John',
+        DB::table('users')->create([
+            'email' => 'admin@hope.com',
+            'password' => Hash::make('12345678'),
+            'nick_name' => 'Administrator 🧑‍💻',
             'country_id' => 1,
+            'addiction_type' => AddictionType::Unknown,
+        ]);
+
         DB::table('users')->create([
             'email' => 'bot@hope.com',
             'password' => Hash::make('12345678'),
