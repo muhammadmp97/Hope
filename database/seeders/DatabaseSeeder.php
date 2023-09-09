@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
         ]);
 
-        DB::table('users')->create([
+        DB::table('users')->insert([
             'email' => 'admin@hope.com',
             'password' => Hash::make('12345678'),
             'nick_name' => 'Administrator 🧑‍💻',
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             'addiction_type' => AddictionType::Unknown,
         ]);
 
-        DB::table('users')->create([
+        DB::table('users')->insert([
             'email' => 'bot@hope.com',
             'password' => Hash::make('12345678'),
             'nick_name' => 'Bot 🤖',
