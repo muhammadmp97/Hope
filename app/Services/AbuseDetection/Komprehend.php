@@ -15,9 +15,6 @@ class Komprehend implements AbuseDetector
 
     public function check(string $text): bool
     {
-        dd('fuck');
-
-
         $response = Http::asForm()
             ->post(self::ENDPOINT, [
                 'text' => $text,
