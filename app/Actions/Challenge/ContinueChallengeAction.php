@@ -3,6 +3,7 @@
 namespace App\Actions\Challenge;
 
 use App\Enums\ChallengeStatus;
+use App\Events\ChallengeContinued;
 use App\Models\Challenge;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -21,6 +22,8 @@ class ContinueChallengeAction
         $challenge->timestamps = false;
         $challenge->continued_at = now();
         $challenge->save();
+
+        ChallengeContinued::dispatch($challenge);
 
         return $challenge;
     }

@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'following_id');
     }
+
+    public function achievements()
+    {
+        return $this->hasMany(UserAchievement::class);
+    }
 }

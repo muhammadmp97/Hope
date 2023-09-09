@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\ChallengeContinued;
+use App\Events\ChallengeCreated;
 use App\Events\CommentCreated;
+use App\Listeners\ChallengeAchievementsListener;
 use App\Listeners\CheckCommentContent;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -19,6 +22,14 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+
+        ChallengeCreated::class => [
+            ChallengeAchievementsListener::class,
+        ],
+
+        ChallengeContinued::class => [
+            ChallengeAchievementsListener::class,
         ],
 
         CommentCreated::class => [

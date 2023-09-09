@@ -15,6 +15,7 @@ class Challenge extends Model
     protected $with = ['user'];
 
     protected $casts = [
+        'created_at' => 'datetime',
         'continued_at' => 'datetime',
     ];
 

@@ -3,6 +3,7 @@
 namespace App\Actions\Challenge;
 
 use App\Enums\ChallengeStatus;
+use App\Events\ChallengeCreated;
 use App\Models\Challenge;
 use App\Models\User;
 
@@ -24,6 +25,10 @@ class CreateChallengeAction
             'continued_at' => now(),
         ]);
 
-        return Challenge::create($data);
+        $challenge = Challenge::create($data);
+
+        ChallengeCreated::dispatch($challenge);
+
+        return $challenge;
     }
 }
