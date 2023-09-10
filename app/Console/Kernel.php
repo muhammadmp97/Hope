@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('sanctum:prune-expired --hours=24')->daily();
 
         $schedule->command('app:close-abandoned-challenges')->hourly();
+        
+        $schedule->command('app:handle-deactivation-requests')->daily();
     }
 
     /**

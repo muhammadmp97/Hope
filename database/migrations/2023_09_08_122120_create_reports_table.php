@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class, 'reporter_id')->nullable();
+            $table->foreignIdFor(User::class, 'reporter_id')->constrained()->cascadeOnDelete();
             $table->morphs('reportable');
             $table->string('text');
             $table->boolean('is_closed')->default(false);

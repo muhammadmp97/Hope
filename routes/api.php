@@ -6,6 +6,7 @@ use App\Http\Controllers\ChallengeCommentsController;
 use App\Http\Controllers\ChallengeLikesController;
 use App\Http\Controllers\ChallengesController;
 use App\Http\Controllers\ContinueChallengeController;
+use App\Http\Controllers\DeactivationRequestsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UserAchievementsController;
@@ -21,6 +22,8 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('change-password', [AuthController::class, 'changePassword']);
 });
+
+Route::post('deactivate', [DeactivationRequestsController::class, 'store']);
 
 Route::get('profile', [ProfileController::class, 'index']);
 Route::patch('profile', [ProfileController::class, 'update']);

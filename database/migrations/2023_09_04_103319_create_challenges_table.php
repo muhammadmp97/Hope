@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('challenges', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->enum('status', ['ongoing', 'stopped', 'abandoned', 'completed'])->default('ongoing');
             $table->string('text')->nullable();
             $table->timestamp('continued_at')->nullable();
