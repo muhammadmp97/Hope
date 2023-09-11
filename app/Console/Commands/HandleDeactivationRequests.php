@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\DeactivationRequest;
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class HandleDeactivationRequests extends Command
 {
@@ -17,8 +18,9 @@ class HandleDeactivationRequests extends Command
         $userIds = DeactivationRequest::query()
             ->where('created_at', '<', now()->subDays(10))
             ->pluck('user_id');
-
-        $users = User::query()
+        
+        DB::transaction(function () use ($userIds) {
+            $users = User::query()
             ->whereIn('id', $userIds)
             ->get();
 
@@ -29,6 +31,7 @@ class HandleDeactivationRequests extends Command
         DeactivationRequest::query()
             ->whereIn('user_id', $userIds)
             ->delete();
+        });
 
         return $this->comment('Done!');
     }
