@@ -4,7 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Country;
 use App\Models\User;
+use App\Notifications\NewFollowerNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class UserFollowersControllerTest extends TestCase
@@ -50,6 +52,8 @@ class UserFollowersControllerTest extends TestCase
 
     public function test_user_follows_others()
     {
+        Notification::fake();
+
         $this
             ->postJson('api/users/2/followers')
             ->assertOk();
@@ -67,6 +71,8 @@ class UserFollowersControllerTest extends TestCase
             'follower_id' => 1,
             'following_id' => 2,
         ]);
+
+        Notification::assertSentTo(User::find(2), NewFollowerNotification::class);
     }
 
     public function test_user_unfollows_following_user()

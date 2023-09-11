@@ -5,9 +5,11 @@ namespace Tests\Feature;
 use App\Models\Challenge;
 use App\Models\Country;
 use App\Models\User;
+use App\Notifications\ChallengeCommentedNotification;
 use App\Services\AbuseDetection\AbuseDetector;
 use App\Services\AbuseDetection\Komprehend;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
 use Mockery;
 use Mockery\MockInterface;
 use Tests\TestCase;
@@ -74,6 +76,8 @@ class ChallengeCommentsControllerTest extends TestCase
             })
         );
 
+        Notification::fake();
+
         User::factory()->create([
             'email' => config('hope.hope_bot_mail'),
         ]);
@@ -93,6 +97,8 @@ class ChallengeCommentsControllerTest extends TestCase
         $this->assertDatabaseHas('reports', [
             'text' => 'Abusive or hate-speech detected.',
         ]);
+
+        Notification::assertSentTo($this->user, ChallengeCommentedNotification::class);
     }
 
     public function test_user_edits_a_comment()

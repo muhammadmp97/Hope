@@ -6,6 +6,7 @@ use App\Events\CommentCreated;
 use App\Models\Challenge;
 use App\Models\Comment;
 use App\Models\User;
+use App\Notifications\ChallengeCommentedNotification;
 
 class CreateCommentAction
 {
@@ -17,6 +18,10 @@ class CreateCommentAction
                 'user_id' => $user->id,
                 'text' => $data['text'],
             ]);
+
+        $challenge
+            ->user
+            ->notify(new ChallengeCommentedNotification($comment));
         
         CommentCreated::dispatch($comment);
 

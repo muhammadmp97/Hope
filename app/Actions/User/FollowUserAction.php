@@ -3,20 +3,23 @@
 namespace App\Actions\User;
 
 use App\Models\User;
+use App\Notifications\NewFollowerNotification;
 
 class FollowUserAction
 {
-    public function execute(User $follower, $followingId): void
+    public function execute(User $follower, User $following): void
     {
         $userIsFollowed = $follower
             ->following()
-            ->where('followed_id', $followingId)
+            ->where('followed_id', $following->id)
             ->exists();
 
         if (! $userIsFollowed) {
             $follower
             ->following()
-            ->attach($followingId);
+            ->attach($following->id);
+
+            $following->notify(new NewFollowerNotification($follower));
         }
     }
 }

@@ -28,7 +28,7 @@ class UserFollowersController extends Controller
 
     public function store($followingId, FollowUserAction $followUserAction)
     {
-        $followUserAction->execute(request()->user(), $followingId);
+        $followUserAction->execute(request()->user(), User::findOrFail($followingId));
 
         return $this->ok();
     }

@@ -7,6 +7,7 @@ use App\Actions\Challenge\CreateChallengeAction;
 use App\Models\Country;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class UserAchievementsControllerTest extends TestCase
@@ -36,6 +37,8 @@ class UserAchievementsControllerTest extends TestCase
 
     public function test_user_can_have_achievments()
     {
+        Notification::fake();
+
         $this->travelTo('2022-01-01 12:00:00');
 
         $challenge = $this
@@ -68,5 +71,7 @@ class UserAchievementsControllerTest extends TestCase
             ]);
 
         $this->assertEquals(15, User::first()->score);
+
+        Notification::assertCount(2);
     }
 }

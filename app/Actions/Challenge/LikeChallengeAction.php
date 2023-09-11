@@ -4,6 +4,7 @@ namespace App\Actions\Challenge;
 
 use App\Models\Challenge;
 use App\Models\User;
+use App\Notifications\ChallengeLikedNotification;
 
 class LikeChallengeAction
 {
@@ -14,5 +15,9 @@ class LikeChallengeAction
             ->updateOrCreate([
                 'user_id' => $user->id,
             ]);
+
+        $challenge
+            ->user
+            ->notify(new ChallengeLikedNotification($user, $challenge));
     }
 }

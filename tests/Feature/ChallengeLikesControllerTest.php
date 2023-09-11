@@ -4,7 +4,9 @@ namespace Tests\Feature;
 
 use App\Models\Challenge;
 use App\Models\Country;
+use App\Notifications\ChallengeLikedNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class ChallengeLikesControllerTest extends TestCase
@@ -53,10 +55,14 @@ class ChallengeLikesControllerTest extends TestCase
 
     public function test_user_likes_a_challenge()
     {
+        Notification::fake();
+
         $this->postJson('api/challenges/1/likes')
             ->assertOk();
         
         $this->assertEquals(1, Challenge::first()->likes()->count());
+
+        Notification::assertSentTo($this->user, ChallengeLikedNotification::class);
     }
 
     public function test_user_unlikes_a_challenge()
