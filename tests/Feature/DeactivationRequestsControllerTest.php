@@ -27,9 +27,9 @@ class DeactivationRequestsControllerTest extends TestCase
 
     public function test_user_requests_account_deactivation()
     {
-        Sanctum::actingAs($this->user); 
+        Sanctum::actingAs($this->user);
         $this->user->currentAccessToken()->shouldReceive('delete')->once();
-        
+
         $this
             ->postJson('api/deactivate')
             ->assertOk();

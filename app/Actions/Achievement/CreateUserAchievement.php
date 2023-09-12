@@ -18,7 +18,7 @@ class CreateUserAchievement
                 ]);
 
             $user->notify(new AchievementEarnedNotification($achievement));
-        
+
             $user->score += $achievement['score'];
             $user->save();
         });

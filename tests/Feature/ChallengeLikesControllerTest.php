@@ -59,7 +59,7 @@ class ChallengeLikesControllerTest extends TestCase
 
         $this->postJson('api/challenges/1/likes')
             ->assertOk();
-        
+
         $this->assertEquals(1, Challenge::first()->likes()->count());
 
         Notification::assertSentTo($this->user, ChallengeLikedNotification::class);
@@ -76,7 +76,7 @@ class ChallengeLikesControllerTest extends TestCase
 
         $this->deleteJson('api/challenges/1/likes')
             ->assertOk();
-        
+
         $this->assertEquals(0, Challenge::first()->likes()->count());
     }
 }

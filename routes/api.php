@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChallengeCommentsController;
 use App\Http\Controllers\ChallengeLikesController;
 use App\Http\Controllers\ChallengesController;
 use App\Http\Controllers\ContinueChallengeController;
+use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\DeactivationRequestsController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\ProfileController;

@@ -22,7 +22,7 @@ class NotificationsController extends Controller
             ->user()
             ->unreadNotifications
             ->markAsRead();
-    
+
         return $this->ok(
             NotificationResource::collection($notifications)
         );

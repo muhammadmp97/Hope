@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Actions\Challenge\CreateCommentAction;
 use App\Actions\Challenge\UpdateCommentAction;
-use App\Http\Resources\CommentResource;
-use App\Models\Challenge;
 use App\Http\Requests\CreateCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
+use App\Http\Resources\CommentResource;
+use App\Models\Challenge;
 use App\Models\Comment;
 use Illuminate\Validation\UnauthorizedException;
 

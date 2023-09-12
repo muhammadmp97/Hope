@@ -11,7 +11,8 @@ class Komprehend implements AbuseDetector
 
     public function __construct(
         public string $token
-    ) {}
+    ) {
+    }
 
     public function check(string $text): bool
     {

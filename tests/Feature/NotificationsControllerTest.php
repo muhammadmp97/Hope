@@ -2,17 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Models\Challenge;
 use App\Models\Country;
-use App\Models\User;
-use App\Notifications\ChallengeCommentedNotification;
 use App\Notifications\NewFollowerNotification;
-use App\Services\AbuseDetection\AbuseDetector;
-use App\Services\AbuseDetection\Komprehend;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Notification;
-use Mockery;
-use Mockery\MockInterface;
 use Tests\TestCase;
 
 class NotificationsControllerTest extends TestCase

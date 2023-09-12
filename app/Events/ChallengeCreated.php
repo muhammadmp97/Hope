@@ -13,5 +13,6 @@ class ChallengeCreated
 
     public function __construct(
         public Challenge $challenge
-    ) {}
+    ) {
+    }
 }

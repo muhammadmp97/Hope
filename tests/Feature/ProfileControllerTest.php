@@ -62,7 +62,7 @@ class ProfileControllerTest extends TestCase
         ];
 
         $response = $this->patchJson('api/profile', $data);
-        
+
         $response
             ->assertOk()
             ->assertJson([

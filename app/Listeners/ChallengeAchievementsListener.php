@@ -10,7 +10,8 @@ class ChallengeAchievementsListener implements ShouldQueue
 {
     public function __construct(
         public CreateUserAchievement $createUserAchievement
-    ) {}
+    ) {
+    }
 
     public function handle($event)
     {

@@ -13,5 +13,6 @@ class ChallengeContinued
 
     public function __construct(
         public Challenge $challenge
-    ) {}
+    ) {
+    }
 }

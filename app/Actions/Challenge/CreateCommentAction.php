@@ -22,7 +22,7 @@ class CreateCommentAction
         $challenge
             ->user
             ->notify(new ChallengeCommentedNotification($comment));
-        
+
         CommentCreated::dispatch($comment);
 
         return $comment;

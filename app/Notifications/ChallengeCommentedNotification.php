@@ -13,7 +13,8 @@ class ChallengeCommentedNotification extends Notification implements ShouldQueue
 
     public function __construct(
         private Comment $comment
-    ) {}
+    ) {
+    }
 
     public function via(object $notifiable): array
     {

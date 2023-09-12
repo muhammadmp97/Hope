@@ -16,7 +16,8 @@ class CheckCommentContent implements ShouldQueue
     public function __construct(
         public AbuseDetector $abuseDetector,
         public ReportAction $reportAction
-    ) {}
+    ) {
+    }
 
     public function handle(CommentCreated $event): void
     {

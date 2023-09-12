@@ -18,19 +18,19 @@ class HandleDeactivationRequests extends Command
         $userIds = DeactivationRequest::query()
             ->where('created_at', '<', now()->subDays(10))
             ->pluck('user_id');
-        
+
         DB::transaction(function () use ($userIds) {
             $users = User::query()
-            ->whereIn('id', $userIds)
-            ->get();
+                ->whereIn('id', $userIds)
+                ->get();
 
-        foreach ($users as $user) {
-            $user->delete();
-        }
+            foreach ($users as $user) {
+                $user->delete();
+            }
 
-        DeactivationRequest::query()
-            ->whereIn('user_id', $userIds)
-            ->delete();
+            DeactivationRequest::query()
+                ->whereIn('user_id', $userIds)
+                ->delete();
         });
 
         return $this->comment('Done!');

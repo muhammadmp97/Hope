@@ -6,7 +6,7 @@ use Illuminate\Support\Arr;
 
 class Achievement
 {
-    public static function getByPassedDays(int $days): array|null
+    public static function getByPassedDays(int $days): ?array
     {
         $achievements = config('hope.achievements');
 

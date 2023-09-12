@@ -15,7 +15,8 @@ class ChallengeLikedNotification extends Notification implements ShouldQueue
     public function __construct(
         private User $user,
         private Challenge $challenge,
-    ) {}
+    ) {
+    }
 
     public function via(object $notifiable): array
     {

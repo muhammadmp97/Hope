@@ -12,7 +12,8 @@ class AchievementEarnedNotification extends Notification implements ShouldQueue
 
     public function __construct(
         private array $achievement
-    ) {}
+    ) {
+    }
 
     public function via(object $notifiable): array
     {

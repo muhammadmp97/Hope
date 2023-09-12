@@ -13,7 +13,8 @@ class NewFollowerNotification extends Notification implements ShouldQueue
 
     public function __construct(
         private User $follower
-    ) {}
+    ) {
+    }
 
     public function via(object $notifiable): array
     {

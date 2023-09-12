@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Country;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class UserFollowingControllerTest extends TestCase

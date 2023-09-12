@@ -2,9 +2,7 @@
 
 namespace App\Actions\Challenge;
 
-use App\Models\Challenge;
 use App\Models\Comment;
-use App\Models\User;
 
 class UpdateCommentAction
 {

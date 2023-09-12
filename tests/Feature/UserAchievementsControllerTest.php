@@ -15,9 +15,11 @@ class UserAchievementsControllerTest extends TestCase
     use RefreshDatabase;
 
     private $user;
+
     private $challenge;
-    
+
     private CreateChallengeAction $createChallengeAction;
+
     private ContinueChallengeAction $continueChallengeAction;
 
     public function setUp(): void

@@ -16,8 +16,8 @@ class FollowUserAction
 
         if (! $userIsFollowed) {
             $follower
-            ->following()
-            ->attach($following->id);
+                ->following()
+                ->attach($following->id);
 
             $following->notify(new NewFollowerNotification($follower));
         }

@@ -42,7 +42,7 @@ class AuthControllerTest extends TestCase
 
         $this->postJson('api/auth/login', [
             'email' => $user->email,
-            'password' => '12345678'
+            'password' => '12345678',
         ])->assertOk();
     }
 
@@ -52,7 +52,7 @@ class AuthControllerTest extends TestCase
 
         $this->postJson('api/auth/login', [
             'email' => $user->email,
-            'password' => 'password'
+            'password' => 'password',
         ])->assertStatus(401);
     }
 
