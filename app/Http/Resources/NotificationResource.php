@@ -13,6 +13,7 @@ class NotificationResource extends JsonResource
             'App\Notifications\AchievementEarnedNotification' => 'achievement',
             'App\Notifications\ChallengeCommentedNotification' => 'comment',
             'App\Notifications\ChallengeLikedNotification' => 'like',
+            'App\Notifications\CommentLikedNotification' => 'like',
             'App\Notifications\NewFollowerNotification' => 'follower',
         ][$this->type];
 
