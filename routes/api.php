@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChallengeCommentsController;
 use App\Http\Controllers\ChallengeLikesController;
 use App\Http\Controllers\ChallengesController;
+use App\Http\Controllers\CommentLikesController;
 use App\Http\Controllers\ContinueChallengeController;
 use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\DeactivationRequestsController;
@@ -38,6 +39,10 @@ Route::post('challenges/{challenge}/likes', [ChallengeLikesController::class, 's
 Route::delete('challenges/{challenge}/likes', [ChallengeLikesController::class, 'destroy']);
 
 Route::apiResource('challenges/{challenge}/comments', ChallengeCommentsController::class)->except(['show']);
+
+Route::get('comments/{comment}/likes', [CommentLikesController::class, 'index']);
+Route::post('comments/{comment}/likes', [CommentLikesController::class, 'store']);
+Route::delete('comments/{comment}/likes', [CommentLikesController::class, 'destroy']);
 
 Route::apiResource('users', UsersController::class)->only('index', 'show');
 Route::get('users/{user}/following', [UserFollowingController::class, 'index']);
