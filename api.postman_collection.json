@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "824aa950-94cf-4cfb-95c8-a8dfd6111d14",
+		"_postman_id": "49a6cef6-af52-4689-ba39-e6ac97174a50",
 		"name": "Hope APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "14157458",
-		"_collection_link": "https://www.postman.com/muhammadmp1997/workspace/hope-apis/collection/14157458-824aa950-94cf-4cfb-95c8-a8dfd6111d14?source=collection_link"
+		"_exporter_id": "12708540"
 	},
 	"item": [
 		{
@@ -133,6 +132,29 @@
 				},
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (responseCode.code == 200) {",
+									"    var res = pm.response.json();",
+									"    pm.environment.set(\"token\", res.data.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -267,6 +289,11 @@
 								"key": "Authorization",
 								"value": "Bearer {{token}}",
 								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -284,6 +311,102 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "list users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/users/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This endpoints to interact with users"
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://hope.test"
+		},
+		{
+			"key": "token",
+			"value": "1|laravel_sanctum_OGHSjcutN7cPle4bqTwLbhLVmIFkIrbuMDF3GDAZ8294f351"
 		}
 	]
 }
