@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "49a6cef6-af52-4689-ba39-e6ac97174a50",
+		"_postman_id": "02b344d0-c8c2-493c-b3f4-4b64221cabc1",
 		"name": "Hope APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "12708540"
@@ -315,6 +315,119 @@
 		{
 			"name": "Users",
 			"item": [
+				{
+					"name": "Followers",
+					"item": [
+						{
+							"name": "list followers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/users/1/followers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"1",
+										"followers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "follow a user",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/users/1/followers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"1",
+										"followers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "unfollow a user",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/users/1/followers",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"1",
+										"followers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "list users",
 					"event": [
