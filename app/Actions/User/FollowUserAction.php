@@ -11,7 +11,7 @@ class FollowUserAction
     {
         $userIsFollowed = $follower
             ->following()
-            ->where('followed_id', $following->id)
+            ->where('following_id', $following->id)
             ->exists();
 
         if (! $userIsFollowed) {
