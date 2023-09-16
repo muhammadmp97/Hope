@@ -17,6 +17,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('app:close-abandoned-challenges')->hourly();
 
         $schedule->command('app:handle-deactivation-requests')->daily();
+
+        $schedule->command('app:delete-seen-notifications')->daily();
     }
 
     /**
