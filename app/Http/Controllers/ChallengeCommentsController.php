@@ -40,7 +40,7 @@ class ChallengeCommentsController extends Controller
         );
     }
 
-    public function update(updateCommentRequest $request, $challenge, Comment $comment, UpdateCommentAction $updateCommentAction)
+    public function update(UpdateCommentRequest $request, $challenge, Comment $comment, UpdateCommentAction $updateCommentAction)
     {
         if ($comment->user_id !== request()->user()->id) {
             throw new UnauthorizedException();
