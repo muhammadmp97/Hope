@@ -21,6 +21,11 @@ class ContinueChallengeAction
 
         $challenge->timestamps = false;
         $challenge->continued_at = now();
+
+        if ($challenge->passedDays() === 30) {
+            $challenge->status = ChallengeStatus::COMPLETED->value;
+        }
+
         $challenge->save();
 
         ChallengeContinued::dispatch($challenge);

@@ -7,6 +7,7 @@ use App\Models\Challenge;
 use App\Models\Country;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class ContinueChallengeControllerTest extends TestCase
@@ -74,5 +75,37 @@ class ContinueChallengeControllerTest extends TestCase
         $challenge = Challenge::first();
         $this->assertTrue($challenge->continued_at->diffInDays() === 0);
         $this->assertTrue($challenge->updated_at->diffInDays() > 0);
+    }
+
+    public function test_user_completes_a_challenge()
+    {
+        Notification::fake();
+
+        Challenge::factory()->create([
+            'status' => ChallengeStatus::ONGOING->value,
+            'continued_at' => '2022-01-01 21:00:00',
+            'created_at' => '2022-01-01 21:00:00',
+        ]);
+
+
+        $this->travelTo('2023-01-31 21:01:00');
+
+        $this->postJson('api/challenges/1/continue');
+
+        $this
+            ->getJson('api/users/1/achievements')
+            ->assertJson([
+                'data' => [
+                    [
+                        'name' => 'hero',
+                    ],
+                ],
+            ]);
+
+        $this->assertDatabaseHas('challenges', [
+            'status' => ChallengeStatus::COMPLETED->value,
+        ]);
+
+        Notification::assertCount(1);
     }
 }
