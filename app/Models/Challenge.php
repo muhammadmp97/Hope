@@ -34,6 +34,14 @@ class Challenge extends Model
             ->exists();
     }
 
+    public function passedDays(): int
+    {
+        return $this
+            ->continued_at
+            ->diff($this->created_at)
+            ->d;
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

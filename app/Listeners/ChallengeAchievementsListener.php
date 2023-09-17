@@ -15,13 +15,7 @@ class ChallengeAchievementsListener implements ShouldQueue
 
     public function handle($event)
     {
-        $passedDays = $event
-            ->challenge
-            ->continued_at
-            ->diff($event->challenge->created_at)
-            ->d;
-
-        $achievement = Achievement::getByPassedDays($passedDays);
+        $achievement = Achievement::getByPassedDays($event->challenge->passedDays());
 
         if (! $achievement) {
             return;
