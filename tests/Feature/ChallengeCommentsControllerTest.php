@@ -78,9 +78,11 @@ class ChallengeCommentsControllerTest extends TestCase
 
         Notification::fake();
 
-        User::factory()->create([
+        $user = User::factory()->create([
             'email' => config('hope.hope_bot_mail'),
         ]);
+        
+        $this->signIn($user);
 
         $response = $this->postJson('api/challenges/1/comments', [
             'text' => 'You ****** *****!',

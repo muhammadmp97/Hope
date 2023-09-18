@@ -16,8 +16,10 @@ class LikeChallengeAction
                 'user_id' => $user->id,
             ]);
 
-        $challenge
-            ->user
-            ->notify(new ChallengeLikedNotification($user, $challenge));
+        if ($user->isNot($challenge->user)) {
+            $challenge
+                ->user
+                ->notify(new ChallengeLikedNotification($user, $challenge));
+        }
     }
 }

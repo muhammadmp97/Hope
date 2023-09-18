@@ -19,9 +19,11 @@ class CreateCommentAction
                 'text' => $data['text'],
             ]);
 
-        $challenge
-            ->user
-            ->notify(new ChallengeCommentedNotification($comment));
+        if ($user->isNot($challenge->user)) {
+            $challenge
+                ->user
+                ->notify(new ChallengeCommentedNotification($comment));
+        }
 
         CommentCreated::dispatch($comment);
 

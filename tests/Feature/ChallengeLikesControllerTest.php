@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Challenge;
 use App\Models\Country;
+use App\Models\User;
 use App\Notifications\ChallengeLikedNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
@@ -14,6 +15,7 @@ class ChallengeLikesControllerTest extends TestCase
     use RefreshDatabase;
 
     private $user;
+    private $challenge;
 
     public function setUp(): void
     {
@@ -26,7 +28,9 @@ class ChallengeLikesControllerTest extends TestCase
 
         $this->user = $this->signIn();
 
-        Challenge::factory()->create();
+        $this->challenge = Challenge::factory()->create([
+            'user_id' => (User::factory()->create())->id
+        ]);
     }
 
     public function test_user_gets_like_list()
@@ -60,9 +64,9 @@ class ChallengeLikesControllerTest extends TestCase
         $this->postJson('api/challenges/1/likes')
             ->assertOk();
 
-        $this->assertEquals(1, Challenge::first()->likes()->count());
+        $this->assertEquals(1, $this->challenge->likes()->count());
 
-        Notification::assertSentTo($this->user, ChallengeLikedNotification::class);
+        Notification::assertSentTo($this->challenge->user, ChallengeLikedNotification::class);
     }
 
     public function test_user_unlikes_a_challenge()
