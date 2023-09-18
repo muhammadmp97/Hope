@@ -87,4 +87,11 @@ class UserFollowersControllerTest extends TestCase
 
         $this->assertDatabaseEmpty('followers');
     }
+
+    public function test_user_cannot_follow_himself()
+    {
+        $this
+            ->postJson('api/users/1/followers')
+            ->assertStatus(400);
+    }
 }
