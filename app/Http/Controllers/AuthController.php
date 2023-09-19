@@ -6,6 +6,7 @@ use App\Actions\User\ChangePasswordAction;
 use App\Actions\User\CreateUserAction;
 use App\Actions\User\LoginUserAction;
 use App\Actions\User\LogoutUserAction;
+use App\Exceptions\UserNotFoundException;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Requests\UserRegistrationRequest;
@@ -28,7 +29,13 @@ class AuthController extends Controller
 
     public function login(UserLoginRequest $request, LoginUserAction $loginUserAction)
     {
-        $token = $loginUserAction->execute($request->validated());
+        try {
+            $token = $loginUserAction->execute($request->validated());
+        } catch (UserNotFoundException) {
+            return $this->unauthorized([
+                'message' => 'Authentication failed',
+            ]);
+        }
 
         return $this->ok(
             UserTokenResource::make($token)

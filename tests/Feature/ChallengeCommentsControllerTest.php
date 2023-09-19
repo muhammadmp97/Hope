@@ -81,7 +81,7 @@ class ChallengeCommentsControllerTest extends TestCase
         $user = User::factory()->create([
             'email' => config('hope.hope_bot_mail'),
         ]);
-        
+
         $this->signIn($user);
 
         $response = $this->postJson('api/challenges/1/comments', [

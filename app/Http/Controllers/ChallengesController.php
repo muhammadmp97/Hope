@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Challenge\CreateChallengeAction;
 use App\Actions\Challenge\StopChallengeAction;
+use App\Exceptions\UserHaveUnCompletedChallengeException;
 use App\Http\Requests\CreateChallengeRequest;
 use App\Http\Resources\ChallengeResource;
 use App\Models\Challenge;
@@ -32,7 +33,13 @@ class ChallengesController extends Controller
 
     public function store(CreateChallengeRequest $request, CreateChallengeAction $createChallengeAction)
     {
-        $challenge = $createChallengeAction->execute($request->user(), $request->validated());
+        try {
+            $challenge = $createChallengeAction->execute($request->user(), $request->validated());
+        } catch (UserHaveUnCompletedChallengeException) {
+            return $this->badRequest([
+                'message' => 'You have uncompleted challenge',
+            ]);
+        }
 
         return $this->created(
             ChallengeResource::make($challenge)
