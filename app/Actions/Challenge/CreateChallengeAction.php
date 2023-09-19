@@ -4,6 +4,7 @@ namespace App\Actions\Challenge;
 
 use App\Enums\ChallengeStatus;
 use App\Events\ChallengeCreated;
+use App\Exceptions\UserHaveUnCompletedChallengeException;
 use App\Models\Challenge;
 use App\Models\User;
 
@@ -16,7 +17,7 @@ class CreateChallengeAction
             ->where('status', ChallengeStatus::ONGOING->value);
 
         if ($ongoingChallenge->exists()) {
-            abort(400, 'You have an uncompleted challenge!');
+            throw new UserHaveUnCompletedChallengeException();
         }
 
         $data = array_merge($data, [

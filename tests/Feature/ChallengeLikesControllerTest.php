@@ -15,6 +15,7 @@ class ChallengeLikesControllerTest extends TestCase
     use RefreshDatabase;
 
     private $user;
+
     private $challenge;
 
     public function setUp(): void
@@ -29,7 +30,7 @@ class ChallengeLikesControllerTest extends TestCase
         $this->user = $this->signIn();
 
         $this->challenge = Challenge::factory()->create([
-            'user_id' => (User::factory()->create())->id
+            'user_id' => (User::factory()->create())->id,
         ]);
     }
 

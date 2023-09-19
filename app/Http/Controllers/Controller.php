@@ -29,6 +29,16 @@ class Controller extends BaseController
         return $this->respondResourceWithStatusCode($resource, Response::HTTP_OK);
     }
 
+    public function badRequest($resource = null): JsonResponse
+    {
+        return $this->respondResourceWithStatusCode($resource, Response::HTTP_BAD_REQUEST);
+    }
+
+    public function unauthorized($resource = null): JsonResponse
+    {
+        return $this->respondResourceWithStatusCode($resource, Response::HTTP_UNAUTHORIZED);
+    }
+
     protected function respondResourceWithStatusCode($resource, $statusCode): JsonResponse
     {
         if (is_array($resource)) {

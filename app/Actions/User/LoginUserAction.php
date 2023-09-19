@@ -2,6 +2,7 @@
 
 namespace App\Actions\User;
 
+use App\Exceptions\UserNotFoundException;
 use App\Models\DeactivationRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +14,7 @@ class LoginUserAction
         $user = User::firstWhere('email', $data['email']);
 
         if (! $user || ! Hash::check($data['password'], $user->password)) {
-            abort(401, 'User not found!');
+            throw new UserNotFoundException();
         }
 
         // Logging into an account could save it from deletion
