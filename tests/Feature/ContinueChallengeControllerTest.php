@@ -87,7 +87,6 @@ class ContinueChallengeControllerTest extends TestCase
             'created_at' => '2022-01-01 21:00:00',
         ]);
 
-
         $this->travelTo('2023-01-31 21:01:00');
 
         $this->postJson('api/challenges/1/continue');
