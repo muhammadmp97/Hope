@@ -62,7 +62,7 @@ class AuthControllerTest extends TestCase
 
         $this->postJson('api/auth/change-password', [
             'old_password' => '12345678',
-            'password' => 'password',
+            'new_password' => 'password',
         ])->assertOk();
 
         $this->assertTrue(Hash::check('password', $user->password));
@@ -74,7 +74,7 @@ class AuthControllerTest extends TestCase
 
         $this->postJson('api/auth/change-password', [
             'old_password' => '1234',
-            'password' => 'password',
+            'new_password' => 'password',
         ])->assertJsonValidationErrorFor('old_password');
     }
 }
