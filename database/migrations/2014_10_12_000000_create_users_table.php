@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nick_name');
             $table->string('bio')->nullable();
             $table->string('avatar_url')->nullable();
-            $table->foreignId('country_id')->index('country_id_index')->constrained();
+            $table->foreignId('country_id')->constrained();
             $table->unsignedTinyInteger('addiction_type')->index('addiction_type_index');
             $table->boolean('is_recovered')->default(false);
             $table->unsignedInteger('score')->default(0);
