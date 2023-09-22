@@ -44,8 +44,13 @@ Route::get('comments/{comment}/likes', [CommentLikesController::class, 'index'])
 Route::post('comments/{comment}/likes', [CommentLikesController::class, 'store']);
 Route::delete('comments/{comment}/likes', [CommentLikesController::class, 'destroy']);
 
+Route::prefix('users/{user}/following')
+    ->group(function () {
+        Route::get('/', [UserFollowingController::class, 'index']);
+        Route::get('/recommendations', [UserFollowingController::class, 'recommendations']);
+    });
+
 Route::apiResource('users', UsersController::class)->only('index', 'show');
-Route::get('users/{user}/following', [UserFollowingController::class, 'index']);
 Route::get('users/{user}/followers', [UserFollowersController::class, 'index']);
 Route::post('users/{user}/followers', [UserFollowersController::class, 'store']);
 Route::delete('users/{user}/followers', [UserFollowersController::class, 'destroy']);
