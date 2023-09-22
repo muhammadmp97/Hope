@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\TinyUserResource;
+use App\Http\Resources\UserRecommendationResource;
 use App\Models\User;
+use App\Services\FollowingRecommendation;
 
 class UserFollowingController extends Controller
 {
@@ -21,6 +23,16 @@ class UserFollowingController extends Controller
 
         return $this->ok(
             TinyUserResource::collection($following)
+        );
+    }
+
+    public function recommendations(User $user)
+    {
+        $recommendations = (new FollowingRecommendation($user))
+            ->recommend();
+
+        return $this->ok(
+            UserRecommendationResource::collection($recommendations)
         );
     }
 }
