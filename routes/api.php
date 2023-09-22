@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentLikesController;
 use App\Http\Controllers\ContinueChallengeController;
 use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\DeactivationRequestsController;
+use App\Http\Controllers\FollowSuggestionsController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
@@ -51,10 +52,13 @@ Route::prefix('users/{user}/following')
     });
 
 Route::apiResource('users', UsersController::class)->only('index', 'show');
+Route::get('users/{user}/following', [UserFollowingController::class, 'index']);
 Route::get('users/{user}/followers', [UserFollowersController::class, 'index']);
 Route::post('users/{user}/followers', [UserFollowersController::class, 'store']);
 Route::delete('users/{user}/followers', [UserFollowersController::class, 'destroy']);
 Route::get('users/{user}/achievements', [UserAchievementsController::class, 'index']);
+
+Route::get('follow-suggestions', [FollowSuggestionsController::class, 'index']);
 
 Route::post('reports', [ReportsController::class, 'store']);
 

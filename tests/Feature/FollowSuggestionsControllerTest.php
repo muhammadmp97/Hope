@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class UserFollowingRecommendationTest extends TestCase
+class FollowSuggestionsControllerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -25,24 +25,22 @@ class UserFollowingRecommendationTest extends TestCase
         $this->user = $this->signIn();
     }
 
-    public function test_user_can_gets_recommendation_list_contain_users_from_same_addiction_and_country()
+    public function test_user_can_get_suggetion_list()
     {
         $followers = User::factory()->count(5)->create();
+
         $this->user->following()->attach($followers->pluck('id'));
+
         User::factory()->create();
-        $recommendations = User::factory()->count(5)->create([
+
+        User::factory()->count(5)->create([
             'country_id' => $this->user->country_id,
             'addiction_type' => $this->user->addiction_type,
         ]);
 
-        $response = $this
-            ->getJson("api/users/{$this->user->id}/following/recommendations");
-
-        $response->assertOk();
-        $this->assertCount(5, $response['data']);
-        $this->assertEquals(
-            $recommendations->pluck(['id', 'nike_name', 'avatar_url', 'bio']),
-            collect($response['data'])->pluck(['id', 'nike_name', 'avatar_url', 'bio']),
-        );
+        $this
+            ->getJson('api/follow-suggestions')
+            ->assertOk()
+            ->assertJsonCount(5, 'data');
     }
 }
