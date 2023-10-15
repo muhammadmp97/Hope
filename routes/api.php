@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentLikesController;
 use App\Http\Controllers\ContinueChallengeController;
 use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\DeactivationRequestsController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\FollowSuggestionsController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\ProfileController;
@@ -31,6 +32,8 @@ Route::post('deactivate', [DeactivationRequestsController::class, 'store']);
 
 Route::get('profile', [ProfileController::class, 'index']);
 Route::patch('profile', [ProfileController::class, 'update']);
+
+Route::get('feed', [FeedController::class, 'index']);
 
 Route::apiResource('challenges', ChallengesController::class)->only(['index', 'store', 'destroy']);
 Route::post('challenges/{challenge}/continue', ContinueChallengeController::class);
