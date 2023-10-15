@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Challenge;
-use App\Models\User;
 
 class Feed
 {

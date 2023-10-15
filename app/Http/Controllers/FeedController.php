@@ -15,7 +15,7 @@ class FeedController extends Controller
     public function index(Feed $feedService)
     {
         $challenges = $feedService->get();
-        
+
         return $this->ok(
             ChallengeResource::collection($challenges)
         );
