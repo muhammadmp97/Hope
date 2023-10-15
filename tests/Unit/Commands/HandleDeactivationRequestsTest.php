@@ -4,8 +4,6 @@ namespace Tests\Unit;
 
 use App\Actions\User\RequestDeactivationAction;
 use App\Models\Challenge;
-use App\Models\Country;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
