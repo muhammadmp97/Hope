@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\Challenge;
-use App\Models\Country;
 use App\Models\User;
 use App\Notifications\ChallengeCommentedNotification;
 use App\Services\AbuseDetection\AbuseDetector;
@@ -23,13 +22,6 @@ class ChallengeCommentsControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-
-        Country::create([
-            'code' => 'GB',
-            'name' => 'United Kingdom',
-        ]);
-
-        $this->user = $this->signIn();
 
         Challenge::factory()->create();
 

@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Enums\ChallengeStatus;
 use App\Models\Challenge;
-use App\Models\Country;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -12,18 +11,6 @@ use Tests\TestCase;
 class ChallengesControllerTest extends TestCase
 {
     use RefreshDatabase;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        Country::create([
-            'code' => 'GB',
-            'name' => 'United Kingdom',
-        ]);
-
-        $this->signIn();
-    }
 
     public function test_user_gets_his_challenges()
     {

@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Country;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -10,20 +9,6 @@ use Tests\TestCase;
 class DeactivationRequestsControllerTest extends TestCase
 {
     use RefreshDatabase;
-
-    private $user;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        Country::create([
-            'code' => 'GB',
-            'name' => 'United Kingdom',
-        ]);
-
-        $this->user = $this->signIn();
-    }
 
     public function test_user_requests_account_deactivation()
     {

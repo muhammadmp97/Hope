@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Country;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
@@ -11,16 +10,6 @@ use Tests\TestCase;
 class AuthControllerTest extends TestCase
 {
     use RefreshDatabase;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        Country::create([
-            'code' => 'GB',
-            'name' => 'United Kingdom',
-        ]);
-    }
 
     public function test_user_registers(): void
     {

@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Country;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -14,13 +13,6 @@ class UsersControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-
-        Country::create([
-            'code' => 'GB',
-            'name' => 'United Kingdom',
-        ]);
-
-        $this->signIn();
 
         User::factory()->count(2)->create();
     }

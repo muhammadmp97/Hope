@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\Challenge;
-use App\Models\Country;
 use App\Models\User;
 use App\Notifications\ChallengeLikedNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -21,13 +20,6 @@ class ChallengeLikesControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-
-        Country::create([
-            'code' => 'GB',
-            'name' => 'United Kingdom',
-        ]);
-
-        $this->user = $this->signIn();
 
         $this->challenge = Challenge::factory()->create([
             'user_id' => (User::factory()->create())->id,

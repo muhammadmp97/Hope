@@ -13,11 +13,6 @@ class CountriesControllerTest extends TestCase
     public function test_user_looks_for_a_country(): void
     {
         Country::create([
-            'code' => 'GB',
-            'name' => 'United Kingdom',
-        ]);
-
-        Country::create([
             'code' => 'IQ',
             'name' => 'Iraq',
         ]);

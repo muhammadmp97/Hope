@@ -10,25 +10,6 @@ class ProfileControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $user;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        Country::create([
-            'code' => 'GB',
-            'name' => 'United Kingdom',
-        ]);
-
-        Country::create([
-            'code' => 'IQ',
-            'name' => 'Iraq',
-        ]);
-
-        $this->user = $this->signIn();
-    }
-
     public function test_user_can_get_the_profile()
     {
         $this->getJson('api/profile')
@@ -53,6 +34,11 @@ class ProfileControllerTest extends TestCase
 
     public function test_user_profile_can_be_updated()
     {
+        Country::create([
+            'code' => 'IQ',
+            'name' => 'Iraq',
+        ]);
+
         $data = [
             'nick_name' => 'Blue Rose',
             'bio' => 'This is a sample text.',

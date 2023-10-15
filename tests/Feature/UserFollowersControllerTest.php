@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\Country;
 use App\Models\User;
 use App\Notifications\NewFollowerNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,18 +12,9 @@ class UserFollowersControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $user;
-
     public function setUp(): void
     {
         parent::setUp();
-
-        Country::create([
-            'code' => 'GB',
-            'name' => 'United Kingdom',
-        ]);
-
-        $this->user = $this->signIn();
 
         User::factory()->create();
     }

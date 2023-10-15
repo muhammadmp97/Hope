@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Enums\ChallengeStatus;
 use App\Models\Challenge;
-use App\Models\Country;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
@@ -13,18 +12,6 @@ use Tests\TestCase;
 class ContinueChallengeControllerTest extends TestCase
 {
     use RefreshDatabase;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        Country::create([
-            'code' => 'GB',
-            'name' => 'United Kingdom',
-        ]);
-
-        $this->signIn();
-    }
 
     public function test_user_should_wait_a_day_to_continue_the_challenge()
     {

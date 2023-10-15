@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\Challenge;
-use App\Models\Country;
 use App\Notifications\CommentLikedNotification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
@@ -20,13 +19,6 @@ class CommentLikesControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-
-        Country::create([
-            'code' => 'GB',
-            'name' => 'United Kingdom',
-        ]);
-
-        $this->user = $this->signIn();
 
         $challenge = Challenge::factory()->create();
 
