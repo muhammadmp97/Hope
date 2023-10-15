@@ -13,20 +13,6 @@ class HandleDeactivationRequestsTest extends TestCase
 {
     use RefreshDatabase;
 
-    private User $user;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-
-        Country::create([
-            'code' => 'GB',
-            'name' => 'United Kingdom',
-        ]);
-
-        $this->user = $this->signIn();
-    }
-
     public function test_deletes_user_data(): void
     {
         Challenge::factory()->create();

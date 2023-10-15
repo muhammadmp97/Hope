@@ -13,8 +13,6 @@ class ChallengeLikesControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $user;
-
     private $challenge;
 
     public function setUp(): void

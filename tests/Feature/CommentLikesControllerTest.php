@@ -12,8 +12,6 @@ class CommentLikesControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    private $user;
-
     private $comment;
 
     public function setUp(): void
