@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 
 class FollowSuggestions
 {
@@ -16,9 +15,8 @@ class FollowSuggestions
     {
         $user = $this->user ?: request()->user();
 
-        $followingIds = DB::table('followers')
-            ->select('following_id')
-            ->where('follower_id', $user->id)
+        $followingIds = $user
+            ->following()
             ->pluck('following_id');
 
         return User::query()
