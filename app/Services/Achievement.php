@@ -15,6 +15,13 @@ class Achievement
         });
     }
 
+    public static function getByName(string $name): array
+    {
+        $achievements = config('hope.achievements');
+
+        return Arr::first($achievements, fn ($achievement) => $achievement['name'] === $name);
+    }
+
     public static function getById(int $id): array
     {
         return config('hope.achievements')[$id];

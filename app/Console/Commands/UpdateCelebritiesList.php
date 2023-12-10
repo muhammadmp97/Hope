@@ -30,7 +30,7 @@ class UpdateCelebritiesList extends Command
             ->whereIn('followers_count', $topTenFollowersCount)
             ->get();
 
-        $achievement = Achievement::getById(8);
+        $achievement = Achievement::getByName('celebrity');
 
         UserAchievement::query()
             ->where('achievement_id', $achievement['id'])
