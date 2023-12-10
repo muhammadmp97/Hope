@@ -10,9 +10,9 @@ class Achievement
     {
         $achievements = config('hope.achievements');
 
-        $achievement = Arr::first($achievements, fn ($achievement) => $achievement['after_n_days'] === $days);
-
-        return $achievement;
+        return Arr::first($achievements, function ($achievement) use ($days) {
+            return isset($achievement['after_n_days']) && $achievement['after_n_days'] === $days;
+        });
     }
 
     public static function getById(int $id): array
