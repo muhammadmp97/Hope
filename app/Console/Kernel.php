@@ -19,6 +19,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('app:handle-deactivation-requests')->daily();
 
         $schedule->command('app:delete-seen-notifications')->daily();
+
+        $schedule->command('app:update-celebrities-list')->weekly();
     }
 
     /**

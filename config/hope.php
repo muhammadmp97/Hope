@@ -4,6 +4,8 @@ return [
     'abandoned_challenges_deadline' => 3, // Three days
     'hope_bot_mail' => 'bot@hope.com',
 
+    'celebrities_limit' => 10,
+
     'achievements' => [
         1 => [
             'id' => 1,
@@ -53,6 +55,12 @@ return [
             'description' => 'The user earns this after thirty days of endurance in the challenge',
             'score' => 300,
             'after_n_days' => 30,
+        ],
+        [
+            'id' => 8,
+            'name' => 'celebrity',
+            'description' => 'The user earns this if is followed by many people',
+            'score' => 50,
         ],
     ],
 ];
